@@ -1,0 +1,26 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden !important ;
+  width: fit-content;
+  height: 100%;
+  -webkit-transform: scale(0.25);
+  -webkit-transform-origin: 0 0;   
+}
+
+svg {
+  overflow: hidden;
+  width:100%;  
+  height:100%;  
+}
+img {
+  overflow: hidden;
+  width:100%;  
+  height:100%;  
+}
+
+canvas {
+  display: block;
+  overflow: hidden;
+  display: none;
+}
