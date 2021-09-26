@@ -1,0 +1,26 @@
+{
+  "name": "art",
+  "version": "1.0.0",
+  "description": "computer generative art",
+  "main": "main.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gennibble/art.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gennibble/art/issues"
+  },
+  "homepage": "https://github.com/Gennibble/art#readme",
+  "dependencies": {
+    "ethereumjs-wallet": "^1.0.1"
+  }
+}

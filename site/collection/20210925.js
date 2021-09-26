@@ -1,28 +1,14 @@
-params = getParams();
-
-let ds;
-let screen = 480;
-function setup() {
-  mycanvas = createCanvas(screen, screen);
-  ds = new Machine();
-}
-
-function draw() {
-  background(0);
-  ds.render();
-  noLoop();
-  document.getElementById('canvasimg').src = mycanvas.canvas.toDataURL("img/png");
-  mycanvas.canvas.style.display = "none"
-}
-
 function Machine() {
+    colorMode(HSB)
     this.steps = 0;
-    this.seed = params.v ? params.v : "11ac128f8b54949c12d04102cfc01960fc496813cbc3495bf77aeed738579738";
-
     this.rules = "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
     this.startLength = 460.0;
     this.theta = TWO_PI / 10.0;
     this.reset();
+}
+
+Machine.prototype.setRules =function(parm) {
+  this.rules = parm;
 }
 
 Machine.prototype.simulate = function (gen) {
@@ -35,6 +21,7 @@ Machine.prototype.reset = function () {
     this.production = this.axiom;
     this.drawLength = this.startLength;
     this.generations = 0;
+    clear();
   }
 
 Machine.prototype.getAge = function () {
@@ -48,21 +35,28 @@ Machine.prototype.iterate = function() {
 }
 
 
-Machine.prototype.render = function () {
+Machine.prototype.render = function (seed = "0x11ac128f8b54949c12d04102cfc01960fc496813cbc3495bf77aeed738579738") {
     //translate(width / 2, height / 2);
     //draw( width / 2, height / 2)
     noFill();
-    stroke(100, 100, 240);
-    circle(screen / 2, screen / 2, 5);
+    //stroke(100, 100, 240);
+    //circle(screen / 2, screen / 2, 5);
     let unit = 0;
-    
+    seed = seed.substr(2,seed.length);
     for(let i=0; i<this.rules.length-1; ++i) {
 
       var tool = this.rules.charAt(i);
-      let char = this.seed.charAt(i);
-      unit += parseInt(char, 16);
+      let double = single = seed.charAt(i);
+      var digit = parseInt(single, 16);
+      var colors = aryPallete[digit]
+      stroke(colors[0],colors[1],colors[2])
+      
+      if( i<this.rules.length-1 ){
+          double = seed.charAt(i+1); 
+          parseInt(double, 256);
+      }
 
-      console.log(unit, tool);
+      unit += digit;
       switch(true){
        case tool == '+':
          circle(screen / 2, screen / 2, unit)
