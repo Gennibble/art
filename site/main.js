@@ -31,6 +31,7 @@ function draw() {
     console.log(key)
   }
   mycanvas.canvas.style.display = "none";
+  container.style.display ="none";
   container.style.display ="flex";
   container.style["flex-wrap"] = 'wrap';
   container.style["flex-shrink"] = 1;
